@@ -9,5 +9,6 @@ final class HomeErrorState extends HomeState {final String error;
   HomeErrorState({required this.error});}
 final class HomeSuccessState extends HomeState {
   final List<HomeModel> homeModel;
-  HomeSuccessState({required this.homeModel});
+  final bool isGridView;
+  HomeSuccessState({required this.homeModel,required this.isGridView,});
 }

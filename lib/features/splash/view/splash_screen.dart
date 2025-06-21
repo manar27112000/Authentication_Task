@@ -34,15 +34,14 @@ class SplashScreen extends StatelessWidget {
                 alignment: AlignmentDirectional.bottomCenter,
                 children: [
                   Image.network(
-                   'https://marketplace.canva.com/EAFLioKrwLE/1/0/800w/canva-red-minimalist-fast-shop-logo-JgpeuROv_LA.jpg',
+                    'https://logodix.com/logo/68826.png',
                     fit: BoxFit.contain,
                     width: double.infinity,
                     height: double.infinity,
                   ),
-                  const Padding(
-                    padding: EdgeInsets.all(16),
+                  Center(
                     child: CircularProgressIndicator(
-                      color: Colors.white,
+                      color: Colors.deepPurple,
                     ),
                   ),
                 ],

@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:login_task/core/my_bloc_observer.dart';
 import 'package:login_task/features/home/view/home_screen.dart';
+import 'package:login_task/features/login/viewmodel/login_cubit.dart';
 
 import 'features/home/viewmodel/home_cubit.dart';
 import 'features/splash/view/splash_screen.dart';
 import 'features/splash/viewmodel/splash_cubit.dart';
 
 void main() {
+  Bloc.observer = MyBlocObserver();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+
   const MyApp({super.key});
 
   @override
@@ -19,7 +23,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<SplashCubit>(create: (_) => SplashCubit()),
         BlocProvider<HomeCubit>(create: (_) => HomeCubit()),
-        // BlocProvider<LoginCubit>(create: (_) => LoginCubit()),
+        BlocProvider<LoginCubit>(create: (_) => LoginCubit()),
       ],
       child: MaterialApp(
         navigatorKey: navigatorKey,

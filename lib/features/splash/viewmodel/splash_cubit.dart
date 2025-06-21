@@ -11,6 +11,7 @@ part 'splash_state.dart';
 class SplashCubit extends Cubit<SplashState> {
   SplashCubit() : super(SplashInitialState());
 
+
   void navigateToLoginWithTimer() {
     emit(SplashLoadingState());
     Timer(

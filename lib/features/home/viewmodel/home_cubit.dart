@@ -8,6 +8,8 @@ part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitial());
+  bool isGridView = true;
+  List<HomeModel> clothes = [];
 
   void fetchClothes()async{
     try{
@@ -17,11 +19,11 @@ class HomeCubit extends Cubit<HomeState> {
 
         List<dynamic> data = response.data;
 
-        List<HomeModel> clothes = data
+     clothes = data
             .map((json) => HomeModel.fromJson(json))
             .toList();
 
-        emit(HomeSuccessState( homeModel: clothes));
+        emit(HomeSuccessState( homeModel: clothes, isGridView: isGridView,));
       }
 
       else{
@@ -31,6 +33,10 @@ class HomeCubit extends Cubit<HomeState> {
     }catch (e){
       emit(HomeErrorState(error: e.toString()));
     }
+  }
+  void toggleViewMode() {
+    isGridView = !isGridView;
+    emit(HomeSuccessState(homeModel: clothes, isGridView: isGridView));
   }
 
 }
