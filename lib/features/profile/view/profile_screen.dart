@@ -8,8 +8,11 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
     TextEditingController nameController = TextEditingController(text: 'manar');
-    TextEditingController phoneController = TextEditingController(text: '01150041361 ',);
+    TextEditingController phoneController = TextEditingController(
+      text: '01150041361 ',
+    );
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -37,34 +40,13 @@ class ProfileScreen extends StatelessWidget {
               Text('Name', style: TextStyle(fontSize: 14)),
               SizedBox(height: MediaQuery.of(context).size.height / 80),
               TextFormField(
-            controller: nameController,
-            decoration: InputDecoration(
-
-              contentPadding: EdgeInsets.symmetric(horizontal: 16),
-              hintText: '',
-
-              hintStyle: TextStyle(color:Colors.grey),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              filled: true,
-              fillColor: Colors.white,
-            ),
-          ),
-              SizedBox(height: 20),
-              Text('Phone Number', style: TextStyle(fontSize: 14)),
-              SizedBox(height: MediaQuery.of(context).size.height / 80),
-              TextFormField(
-                controller: phoneController,
+                style: TextStyle(color: Colors.black),
+                controller: nameController,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(horizontal: 16),
                   hintText: '',
-                  hintStyle: TextStyle(color:Colors.grey),
+
+                  hintStyle: TextStyle(color: Colors.purple),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey),
                     borderRadius: BorderRadius.circular(10),
@@ -74,77 +56,101 @@ class ProfileScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   filled: true,
-                  fillColor: Colors.white,
+                  fillColor: isDark ? Colors.grey : Colors.blueGrey,
                 ),
               ),
-              SizedBox(height: 50,),
+              SizedBox(height: 20),
+              Text('Phone Number', style: TextStyle(fontSize: 14)),
+              SizedBox(height: MediaQuery.of(context).size.height / 80),
+              TextFormField(
+                style: TextStyle(color: Colors.black),
+                controller: phoneController,
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                  hintText: '',
+                  hintStyle: TextStyle(color: Colors.grey),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  fillColor: isDark ? Colors.grey : Colors.blueGrey,
+
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  filled: true,
+                ),
+              ),
+              SizedBox(height: 50),
               GestureDetector(
-                onTap:() {
+                onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                      builder: (_) =>  HomeScreen(),
-                    ),
-                  );                },
+                    MaterialPageRoute(builder: (_) => HomeScreen()),
+                  );
+                },
                 child: Container(
-                    width: double.infinity,
-                    alignment: Alignment.center,
-                    height: 37,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(14),
-                      gradient:  LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.topRight,
-                        colors:  [
-                          Color(0xff4E2180),
-                          Color(0xff4A2484),
-                          Color(0xff452A8A),
-                          Color(0xff521E77),
-                          Color(0xff5E1468),
-                          Color(0xff631163),
-                        ],
-                      ),
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                  height: 37,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(14),
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.topRight,
+                      colors: [
+                        Color(0xff4E2180),
+                        Color(0xff4A2484),
+                        Color(0xff452A8A),
+                        Color(0xff521E77),
+                        Color(0xff5E1468),
+                        Color(0xff631163),
+                      ],
                     ),
-                    child:Text('Go to Home',
-                      style: TextStyle(fontSize: 18,color: Colors.white),)
+                  ),
+                  child: Text(
+                    'Go to Home',
+                    style: TextStyle(fontSize: 18, color: Colors.white),
+                  ),
                 ),
               ),
-              SizedBox(height: 20,),
+              SizedBox(height: 20),
               GestureDetector(
-                onTap:() {
+                onTap: () {
                   Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(
-                      builder: (_) =>  LoginScreen(),
-                    ),
+                    MaterialPageRoute(builder: (_) => LoginScreen()),
                     (route) => false,
-                  );                },
+                  );
+                },
                 child: Container(
-                    width: double.infinity,
-                    alignment: Alignment.center,
-                    height: 37,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(14),
-                      gradient:  LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.topRight,
-                        colors:  [
-                          Color(0xff4E2180),
-                          Color(0xff4A2484),
-                          Color(0xff452A8A),
-                          Color(0xff521E77),
-                          Color(0xff5E1468),
-                          Color(0xff631163),
-                        ],
-                      ),
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                  height: 37,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(14),
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.topRight,
+                      colors: [
+                        Color(0xff4E2180),
+                        Color(0xff4A2484),
+                        Color(0xff452A8A),
+                        Color(0xff521E77),
+                        Color(0xff5E1468),
+                        Color(0xff631163),
+                      ],
                     ),
-                    child:Text('Logout',
-                      style: TextStyle(fontSize: 18,color: Colors.white),)
+                  ),
+                  child: Text(
+                    'Logout',
+                    style: TextStyle(fontSize: 18, color: Colors.white),
+                  ),
                 ),
               ),
-
             ],
           ),
         ),

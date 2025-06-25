@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:login_task/features/home/viewmodel/home_cubit.dart';
 
+import '../../../core/theme/theme_cubit.dart';
+
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -18,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.purple,
@@ -33,8 +37,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Spacer(),
             IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.light_mode, color: Colors.white, size: 30),
+              onPressed: () {
+                BlocProvider.of<ThemeCubit>(context).changeTheme(null);
+              },
+              icon: Icon(     Icons.brightness_4_outlined,
+                  color: Colors.white, size: 30),
             ),
           ],
         ),
