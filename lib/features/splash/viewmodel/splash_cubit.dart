@@ -1,25 +1,34 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter/material.dart';
-import 'package:login_task/features/login/view/login_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../main.dart';
 
 part 'splash_state.dart';
 
 class SplashCubit extends Cubit<SplashState> {
   SplashCubit() : super(SplashInitialState());
+  bool isLoggedIn = false;
 
-
-  void navigateToLoginWithTimer() {
+  void navigateToLoginWithTimer( )  {
     emit(SplashLoadingState());
+
     Timer(
       Duration(seconds: 3),
-          () {
-            emit(SplashSuccessState());
-          }
+          ()async {
+            isLoggedIn = await checkIfUserLoggedIn();
 
+            if (isLoggedIn) {
+              emit(SplashSuccessStateToHome());
+
+            } else {
+              emit(SplashSuccessStateToLogin());
+            }          }
     );
+  }
+
+  Future<bool> checkIfUserLoggedIn() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool('isLoggedIn') ?? false;
   }
 }

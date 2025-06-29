@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:login_task/features/login/model/login_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'login_state.dart';
 
@@ -13,8 +14,6 @@ class LoginCubit extends Cubit<LoginState> {
   TextEditingController dialCodeController = TextEditingController();
   bool isPasswordHidden = true;
   bool isRememberMe = false;
-
-
   void togglePasswordVisibility() {
     isPasswordHidden = !isPasswordHidden;
     emit(LoginPasswordVisibilityToggled());
@@ -60,13 +59,17 @@ class LoginCubit extends Cubit<LoginState> {
       }
       if (response.statusCode == 200) {
         final loginModel = LoginModel.fromJson(response.data);
-
+        if (isRememberMe) {
+          final prefs = await SharedPreferences.getInstance();
+          await prefs.setBool('isLoggedIn', true);
+        }
         emit(LoginSuccessState(loginModel: loginModel));
       } else {
         emit(LoginFailureState("Login failed: ${response.data}"));
       }
     }
     catch(e){
+      print(e.toString());
       emit(LoginFailureState(e.toString()));
     }
   }
@@ -84,6 +87,11 @@ class LoginCubit extends Cubit<LoginState> {
     catch(e){
         emit(LoginFailureState('حدث خطأ أثناء تحميل البيانات: ${e.toString()}'));
     }
+  }
+
+  Future<void> logout() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isLoggedIn', false);
   }
 
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:login_task/features/home/view/home_screen.dart';
 import 'package:login_task/features/login/view/login_screen.dart';
 import 'package:login_task/features/splash/view/splash_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -118,7 +119,10 @@ class ProfileScreen extends StatelessWidget {
               ),
               SizedBox(height: 20),
               GestureDetector(
-                onTap: () {
+                onTap: ()async {
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setBool('isLoggedIn', false);
+
                   Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(builder: (_) => LoginScreen()),

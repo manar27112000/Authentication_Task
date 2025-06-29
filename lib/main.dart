@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<SplashCubit>(create: (_) => SplashCubit()),
+        BlocProvider<SplashCubit>(create: (_) => SplashCubit()..checkIfUserLoggedIn()),
         BlocProvider<HomeCubit>(create: (_) => HomeCubit()),
         BlocProvider<LoginCubit>(create: (_) => LoginCubit()),
         BlocProvider<ThemeCubit>(create: (_) => ThemeCubit()..changeTheme(isDark)),
