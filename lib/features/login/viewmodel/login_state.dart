@@ -18,3 +18,8 @@ class LoginFailureState extends LoginState {
 class LoginPasswordVisibilityToggled extends LoginState {}
 
 class LoginRememberMeToggled extends LoginState {}
+
+class LoginUserDataLoaded extends LoginState {
+  final UserModel userData;
+  LoginUserDataLoaded(this.userData);
+}

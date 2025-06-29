@@ -10,7 +10,7 @@ class SplashCubit extends Cubit<SplashState> {
   SplashCubit() : super(SplashInitialState());
   bool isLoggedIn = false;
 
-  void navigateToLoginWithTimer( )  {
+  /*void navigateToLoginWithTimer( )  {
     emit(SplashLoadingState());
 
     Timer(
@@ -25,10 +25,31 @@ class SplashCubit extends Cubit<SplashState> {
               emit(SplashSuccessStateToLogin());
             }          }
     );
+  }*/
+  void navigateToLoginWithTimer() async {
+    emit(SplashLoadingState());
+
+    await Future.delayed(const Duration(seconds: 3));
+
+    isLoggedIn = await checkIfUserLoggedIn();
+
+    if (isLoggedIn) {
+      emit(SplashSuccessStateToHome());
+    } else {
+      emit(SplashSuccessStateToLogin());
+    }
   }
 
+
   Future<bool> checkIfUserLoggedIn() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool('isLoggedIn') ?? false;
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      return prefs.getBool('isLoggedIn') ?? false;
+    } catch (e) {
+      print("SharedPreferences error: $e");
+      return false;
+    }
   }
+
+
 }

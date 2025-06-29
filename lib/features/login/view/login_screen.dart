@@ -184,31 +184,35 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height / 85),
-                    Row(
+                   Row(
                       children: [
                         GestureDetector(
                           onTap: () {
                             cubit.toggleRememberMe();
-                        },
+                          },
                           child: Container(
                             width: 18,
                             height: 18,
                             decoration: BoxDecoration(
                               color: isChecked ? Colors.purple : Colors.white,
-                              // تغيير اللون
                               borderRadius: BorderRadius.circular(6),
                               border: Border.all(
                                 color: isChecked ? Colors.purple : Colors.grey,
                                 width: 2,
                               ),
                             ),
-                            child:
-                                isChecked
-                                    ? Icon(Icons.check, color: Colors.white)
-                                    : null,
+                            child: isChecked
+                                ? const Center(
+                              child: Icon(
+                                Icons.check,
+                                color: Colors.white,
+                                size: 14, // تأكدي إن الحجم صغير علشان ما يتعداش الحواف
+                              ),
+                            )
+                                : null,
                           ),
                         ),
-                        SizedBox(width: MediaQuery.of(context).size.width / 40),
+                        const SizedBox(width: 8),
                         Text(
                           'Remember me',
                           style: TextStyle(
@@ -218,6 +222,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ],
                     ),
+
                     SizedBox(height: MediaQuery.of(context).size.height / 85),
                     GestureDetector(
                       onTap: () {

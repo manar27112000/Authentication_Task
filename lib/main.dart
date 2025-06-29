@@ -5,6 +5,8 @@ import 'package:login_task/core/my_bloc_observer.dart';
 import 'package:login_task/core/theme/theme_cubit.dart';
 import 'package:login_task/features/home/view/home_screen.dart';
 import 'package:login_task/features/login/viewmodel/login_cubit.dart';
+import 'package:login_task/features/profile/view/profile_screen.dart';
+import 'package:login_task/features/profile/viewmodel/profile_cubit.dart';
 
 import 'core/theme/dark_theme.dart';
 import 'core/theme/light_theme.dart';
@@ -34,6 +36,7 @@ class MyApp extends StatelessWidget {
         BlocProvider<HomeCubit>(create: (_) => HomeCubit()),
         BlocProvider<LoginCubit>(create: (_) => LoginCubit()),
         BlocProvider<ThemeCubit>(create: (_) => ThemeCubit()..changeTheme(isDark)),
+        BlocProvider<ProfileCubit>(create: (_) => ProfileCubit()..getUserData()),
       ],
       child: BlocConsumer<ThemeCubit, ThemeState>(
         listener: (context, state) {

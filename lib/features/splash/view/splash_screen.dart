@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:login_task/features/profile/view/profile_screen.dart';
 import '../../home/view/home_screen.dart';
 import '../../login/view/login_screen.dart';
 import '../viewmodel/splash_cubit.dart';
@@ -23,7 +24,8 @@ class SplashScreen extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (_) => const HomeScreen(),
+                builder: (_) => const ProfileScreen()
+                ,
               ));
           }
         },
@@ -40,9 +42,8 @@ class SplashScreen extends StatelessWidget {
                 child: Stack(
                   alignment: AlignmentDirectional.bottomCenter,
                   children: [
-                    Image.network(
-                      'https://tse3.mm.bing.net/th/id/OIP.Yfvy52FXSwLc3537iOqBkQHaFj?rs=1&pid=ImgDetMain&cb=idpwebp2&o=7&rm=3',
-                      fit: BoxFit.contain,
+                    Image.network('https://th.bing.com/th/id/OIP.xbIWSWwYquTdha9ihTurWwHaEK?w=279&h=180&c=7&r=0&o=5&pid=1.7'
+                    ,  fit: BoxFit.cover,
                       width: double.infinity,
                       height: double.infinity,
                     ),
